@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DreamTown — Cozy idle mayor RPG</title>
-  <meta name="description" content="DreamTown — cozy idle mayor RPG for Windows and Android. Download and join our Discord.">
+  <meta name="description" content="DreamTown — cozy idle mayor RPG for Windows and Android.">
   <link rel="stylesheet" href="css/site.css">
   <script src="site-config.js"></script>
 </head>
@@ -25,10 +25,10 @@
       <h1>DreamTown</h1>
       <p class="tagline">A cozy idle mayor RPG — grow your town and befriend villagers.</p>
       <div class="btn-row">
-        <a class="btn btn-primary" id="btn-download-hero" href="#download">Download</a>
+        <a class="btn btn-primary" id="btn-download-hero" href="#" download>Download for Windows</a>
         <a class="btn btn-discord" id="btn-discord-hero" href="#" target="_blank" rel="noopener">Join Discord</a>
       </div>
-      <p class="hint">By <span id="studio-name">ReinaLabs</span></p>
+      <p class="hint">By <span id="studio-name">ReinaLabs</span> · ZIP → run <strong>DreamTown-Setup.bat</strong></p>
     </section>
 
     <section class="section" id="about">
@@ -45,16 +45,21 @@
       <h2>Download</h2>
       <div class="card">
         <h3>🪟 Windows</h3>
-        <p>Download the ZIP or installer for PC (landscape).</p>
+        <p>Click below — your browser downloads <strong>DreamTown-Windows.zip</strong> directly.</p>
+        <ol class="steps">
+          <li>Extract the ZIP</li>
+          <li>Run <strong>DreamTown-Setup.bat</strong> (or <strong>DreamTown-Setup.exe</strong> if included)</li>
+          <li>Play from the Desktop shortcut</li>
+        </ol>
         <p style="margin-top:14px">
-          <a class="btn btn-primary" id="btn-windows" href="#">Download for Windows</a>
+          <a class="btn btn-primary" id="btn-windows" href="#" download>Download ZIP now</a>
         </p>
       </div>
       <div class="card" style="margin-top:16px">
         <h3>📱 Android</h3>
-        <p>Available on Google Play when published.</p>
+        <p>Google Play (landscape).</p>
         <p style="margin-top:14px">
-          <a class="btn btn-secondary" id="btn-android" href="#">Google Play</a>
+          <a class="btn btn-secondary" id="btn-android" href="#" target="_blank" rel="noopener">Google Play</a>
         </p>
       </div>
     </section>
@@ -77,15 +82,33 @@
   <script>
     (function () {
       var c = window.DREAMTOWN_SITE || {};
-      function setHref(id, url) {
+      var zipUrl = c.windowsZipUrl || c.windowsDownload || '';
+      var zipName = c.windowsZipFilename || 'DreamTown-Windows.zip';
+
+      function wireDownload(id) {
         var el = document.getElementById(id);
-        if (el && url) el.href = url;
+        if (!el || !zipUrl) return;
+        el.href = zipUrl;
+        el.setAttribute('download', zipName);
+        el.removeAttribute('target');
       }
-      setHref('btn-discord', c.discordInvite);
-      setHref('btn-discord-hero', c.discordInvite);
-      setHref('btn-windows', c.windowsDownload);
-      setHref('btn-android', c.androidPlayStore);
-      setHref('btn-download-hero', c.windowsDownload || '#download');
+
+      wireDownload('btn-windows');
+      wireDownload('btn-download-hero');
+
+      function setHref(id, url, blank) {
+        var el = document.getElementById(id);
+        if (!el || !url) return;
+        el.href = url;
+        if (blank) {
+          el.setAttribute('target', '_blank');
+          el.setAttribute('rel', 'noopener');
+        }
+      }
+      setHref('btn-discord', c.discordInvite, true);
+      setHref('btn-discord-hero', c.discordInvite, true);
+      setHref('btn-android', c.androidPlayStore, true);
+
       if (c.studioName) {
         ['studio-name', 'studio-footer'].forEach(function (id) {
           var el = document.getElementById(id);
