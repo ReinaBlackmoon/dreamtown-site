@@ -91,6 +91,16 @@
         el.href = zipUrl;
         el.setAttribute('download', zipName);
         el.removeAttribute('target');
+        el.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          var a = document.createElement('a');
+          a.href = zipUrl;
+          a.download = zipName;
+          a.rel = 'noopener';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        });
       }
 
       wireDownload('btn-windows');
