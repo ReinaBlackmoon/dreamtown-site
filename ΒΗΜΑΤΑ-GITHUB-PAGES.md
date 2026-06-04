@@ -1,113 +1,48 @@
-# DreamTown site — βήμα βήμα (μόνο site, όχι κώδικας παιχνιδιού)
+# Πώς βλέπεις το live site (2 λεπτά)
 
-## Τι ανεβαίνει στο GitHub
+Το repo είναι OK: https://github.com/ReinaBlackmoon/dreamtown-site
 
-Μόνο ο φάκελος **`dreamtown-site`** (αυτός):
-
-- About
-- Download (link)
-- Discord
-- Privacy
-
-**ΔΕΝ** ανεβάζεις το `dreamtown` project (όχι lib/, όχι Flutter).
+Το κόκκινο **X** = το GitHub Pages **δεν ήταν ενεργοποιημένο** ακόμα.
 
 ---
 
-## Βήμα 1 — Δοκίμασε το site στο PC
+## Τρόπος Α — Πιο εύκολος (χωρίς Actions)
 
-Άνοιξε: `c:\Projects\dreamtown-site\index.html` στον browser.
+1. Άνοιξε: https://github.com/ReinaBlackmoon/dreamtown-site/settings/pages
+2. **Build and deployment** → Source: **Deploy from a branch**
+3. Branch: **main** → Folder: **/ (root)**
+4. **Save**
+5. Περίμενε 1–3 λεπτά
 
----
+**Το site σου:**
 
-## Βήμα 2 — GitHub login (μία φορά)
+https://reinablackmoon.github.io/dreamtown-site/
 
-1. Εγκατάστησε [GitHub Desktop](https://desktop.github.com/) **ή** Git από terminal.
-2. Terminal:
-   ```
-   gh auth login
-   ```
-   (αν δεν έχεις `gh`, χρησιμοποίησε GitHub Desktop μόνο.)
+**Privacy (Play Store):**
 
----
-
-## Βήμα 3 — Νέο PUBLIC repo (μόνο site)
-
-1. https://github.com/new
-2. Repository name: **`dreamtown-site`** (ή `dreamtown-game-page`)
-3. **Public**
-4. **Χωρίς** README / .gitignore (άδειο repo)
-5. Create repository
+https://reinablackmoon.github.io/dreamtown-site/privacy.html
 
 ---
 
-## Βήμα 4 — Ανέβασε ΜΟΝΟ τα αρχεία site
+## Τρόπος Β — GitHub Actions (μετά από fix)
 
-### Με GitHub Desktop (εύκολο)
+1. Settings → Pages → Source: **GitHub Actions**
+2. Actions tab → **Deploy site** → **Re-run all jobs**
 
-1. File → Add local repository → `c:\Projects\dreamtown-site`
-2. Publish repository → `dreamtown-site` (public)
-3. Commit message: `DreamTown public site`
-4. Push
-
-### Με terminal (αν έχεις git)
-
-```bat
-cd c:\Projects\dreamtown-site
-git init
-git add index.html privacy.html site-config.js css .nojekyll README.md
-git commit -m "DreamTown public site"
-git branch -M main
-git remote add origin https://github.com/ΤΟ-USERNAME-ΣΟΥ/dreamtown-site.git
-git push -u origin main
-```
-
-Αντικατάστησε `ΤΟ-USERNAME-ΣΟΥ` (π.χ. ReinaBlackMoon).
+(Το workflow έχει `enablement: true` — κάνε push το τελευταίο commit αν χρειάζεται.)
 
 ---
 
-## Βήμα 5 — Ενεργοποίησε Pages (live site)
+## Αν δεν ανοίγει
 
-1. Repo **dreamtown-site** στο GitHub
-2. **Settings** → **Pages**
-3. Source: **Deploy from a branch**
-4. Branch: **main** → Folder: **/ (root)**
-5. **Save**
-
-Μετά από 1–3 λεπτά:
-
-```
-https://ΤΟ-USERNAME-ΣΟΥ.github.io/dreamtown-site/
-```
-
-Privacy (για Play Store):
-
-```
-https://ΤΟ-USERNAME-ΣΟΥ.github.io/dreamtown-site/privacy.html
-```
+- Hard refresh: Ctrl+F5
+- Δοκίμασε incognito
+- Settings → Pages — δες αν γράφει green check "Your site is live"
 
 ---
 
-## Βήμα 6 — Windows installer / ZIP (χωρίς κώδικα)
+## Windows download στο site
 
-1. Στο PC: `c:\Projects\dreamtown\PACKAGE-WINDOWS.bat`
-2. Στο GitHub: repo **dreamtown-site** → **Releases** → **Create new release**
-3. Tag: `v1.3.14` → ανέβασε το ZIP από `dreamtown\dist\`
-4. Copy link του αρχείου → βάλτο στο `site-config.js` → `windowsDownload`
-5. Commit + push (GitHub Desktop)
-
----
-
-## Βήμα 7 — Discord link
-
-Ήδη στο `site-config.js`: `https://discord.gg/qkwYd8rAhQ`
-
----
-
-## Σημαντικό
-
-| Ναι | Όχι |
-|-----|-----|
-| Repo `dreamtown-site` (public) | Repo με όλο το Flutter project |
-| HTML site + Releases για ZIP | Upload `lib/`, `android/`, κλπ |
-
-Το παιχνίδι μένει **ιδιωτικό** στον υπολογιστή σου.
+1. Releases: https://github.com/ReinaBlackmoon/dreamtown-site/releases
+2. Ανέβασε `DreamTown-Windows-v1.3.14.zip` από `c:\Projects\dreamtown\dist\`
+3. Το κουμπί Download δείχνει στο `releases/latest` (ήδη στο site-config.js)
